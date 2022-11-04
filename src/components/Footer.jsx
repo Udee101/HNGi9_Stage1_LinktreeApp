@@ -5,7 +5,7 @@ import Zuri from '../assets/zuri-logo.png';
 
 function Footer() {
   return (
-    <>
+    <footer className='footer_container'>
       <hr />
       <div className='content'>
         <div>
@@ -20,7 +20,7 @@ function Footer() {
           <Image src={I4G} alt='I4g logo' className='i4g_logo' />
         </div>
       </div>
-    </>
+    </footer>
   )
 }
 
