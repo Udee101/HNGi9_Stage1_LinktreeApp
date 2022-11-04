@@ -3,7 +3,7 @@ import Image from './Image';
 import I4G from '../assets/I4G.png';
 import Zuri from '../assets/zuri-logo.png';
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className='footer_container'>
       <hr />
