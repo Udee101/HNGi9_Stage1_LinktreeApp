@@ -1,16 +1,19 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import Profile from './components/Profile';
-import LinkButton from './components/LinkButton';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
 import Footer from './components/Footer';
-import SocialIcons from './components/SocialIcons';
 
 const App = () => {
   return (
     <div className='App'>
-      <Profile />
-      <LinkButton />
-      <SocialIcons />
+      <Router>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path='/contact' element={<Contact />} />
+        </Routes>
+      </Router>
       <Footer />
     </div>
   )
