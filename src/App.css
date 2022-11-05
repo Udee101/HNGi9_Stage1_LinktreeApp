@@ -120,6 +120,31 @@ body {
   color: #667085;
 }
 
+/* CONTACT PAGE */
+.contact_section {
+  max-width: 720px;
+  padding: 64px 0;
+  margin: auto;
+  flex-direction: column;
+}
+
+header {
+  margin-bottom: 40px;
+}
+
+header .heading {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 44px;
+  margin-bottom: 15px;
+}
+
+header .desc {
+  font-size: 18px;
+  line-height: 28px;
+  color: #475467;
+}
+
 /* STYLES FOR LARGER SCREEN */
 
 @media screen and (min-width: 780px) {
