@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState} from 'react'
 import FormInput from './FormInput';
 import './form.css'
 
@@ -43,14 +43,15 @@ const Form = () => {
     message: "",
   });
 
-  const [errorMessage, setErrorMessage] = useState({})
+  const [focused, setFocused] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(values,textarea);
-    setErrorMessage(validate(textarea));
   }
 
+  const handleFocus = (e) => {
+    setFocused(true);
+  }
   // Track changes in input fields
   const onInputChange = (e) => {
     const name = e.target.name;
@@ -64,22 +65,8 @@ const Form = () => {
     setTextarea({...textarea, [e.target.name]: e.target.value});
   }
 
-  useEffect(() => {
-    if (!Object.keys(errorMessage).length === 0) {
-      console.log(errorMessage);
-    }
-    console.log(textarea, values)
-  },[errorMessage])
-
-  
-  // textarea validation
-  const validate = (textarea) => {
-    const errors = {};
-    if (!textarea.message) {
-      errors.message = "Please enter a message";
-    }
-    return errors;
-  }
+  // Error Message in Textarea
+  const errorMessage = 'Please enter a message';
 
   return (
     <>
@@ -100,11 +87,25 @@ const Form = () => {
 
         <div className='message_box'>
           <label className='label'>Message</label>
-          <textarea name="message" id="message" cols="30" rows="10" placeholder="Send me a message and I'll reply as soon as possible" onChange={onTextareaChange}  required></textarea><p className='error_msg'>{errorMessage.message}</p>
+          <textarea 
+            name="message" 
+            id="message" 
+            cols="30" 
+            rows="10" 
+            placeholder="Send me a message and I'll reply as soon as possible" 
+            onChange={onTextareaChange}  
+            required
+            onBlur={handleFocus} focused={focused.toString()}>
+          </textarea><p className='error_msg'>{errorMessage}</p>
         </div>
 
         <div className="check">
-          <input type="checkbox" name="checkbox" id="check_box" required/><label>You agree to providing your data to Frank Udeorah who may contact you.</label>
+          <input 
+            type="checkbox" 
+            name="checkbox" 
+            id="check_box" 
+            required/>
+          <label>You agree to providing your data to Frank Udeorah who may contact you.</label>
         </div>
 
         <button id='btn__submit' type='submit'>Send message</button>
