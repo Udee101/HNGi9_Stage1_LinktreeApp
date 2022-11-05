@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import FormInput from './FormInput';
 
 
@@ -42,12 +42,14 @@ const Form = () => {
     message: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState({})
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values,textarea);
-    
+    // console.log(values,textarea);
+    setErrorMessage(validate(textarea));
   }
-  
+
   // Track changes in input fields
   const onInputChange = (e) => {
     const name = e.target.name;
@@ -59,6 +61,23 @@ const Form = () => {
   // Track changes in textarea
   const onTextareaChange = (e) => {
     setTextarea({...textarea, [e.target.name]: e.target.value});
+  }
+
+  useEffect(() => {
+    if (!Object.keys(errorMessage).length === 0) {
+      console.log(errorMessage);
+    }
+    console.log(textarea, values)
+  },[errorMessage])
+
+  
+  // textarea validation
+  const validate = (textarea) => {
+    const errors = {};
+    if (!textarea.message) {
+      errors.message = "Please enter a message";
+    }
+    return errors;
   }
 
   return (
@@ -80,7 +99,7 @@ const Form = () => {
 
         <div className='message_box'>
           <p className='label'>Message</p>
-          <textarea name="message" id="message" cols="30" rows="10" placeholder="Send me a message asnd I'll reply as soon as possible" onChange={onTextareaChange} ></textarea>
+          <textarea name="message" id="message" cols="30" rows="10" placeholder="Send me a message and I'll reply as soon as possible" onChange={onTextareaChange} ></textarea><p className='error_msg'>{errorMessage.message}</p>
         </div>
 
         <div className="check">
