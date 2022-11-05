@@ -72,6 +72,11 @@ textarea:focus:invalid {
   font-size: 14px;
   font-weight: 500;
   color: #F83F23;
+  display: none;
+}
+
+textarea:invalid[focused="true"] ~ .error_msg{
+  display: block;
 }
 
 .check {
