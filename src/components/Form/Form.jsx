@@ -41,15 +41,36 @@ const Form = () => {
   const [textarea, setTextarea] = useState({
     message: "",
   });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(values,textarea);
+    
+  }
   
+  // Track changes in input fields
+  const onInputChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setValues(values => ({...values, [name]: value}))
+  };
+  
+  
+  // Track changes in textarea
+  const onTextareaChange = (e) => {
+    setTextarea({...textarea, [e.target.name]: e.target.value});
+  }
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         {inputs.map((input, i) => { 
           return(
             <div className={input.className} key={i}>
               <FormInput 
-                 {...input} 
+                 {...input}
+                value={values[input.name]}
+                onChange={onInputChange}
                 id={input.id}
                 hint={input.hint}
               />
@@ -59,7 +80,7 @@ const Form = () => {
 
         <div className='message_box'>
           <p className='label'>Message</p>
-          <textarea name="message" id="message" cols="30" rows="10" placeholder="Send me a message asnd I'll reply as soon as possible" ></textarea>
+          <textarea name="message" id="message" cols="30" rows="10" placeholder="Send me a message asnd I'll reply as soon as possible" onChange={onTextareaChange} ></textarea>
         </div>
 
         <div className="check">
