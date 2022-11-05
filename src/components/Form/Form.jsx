@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import FormInput from './FormInput';
+import './form.css'
 
 
 const inputs = [
@@ -98,12 +99,12 @@ const Form = () => {
         })}
 
         <div className='message_box'>
-          <p className='label'>Message</p>
-          <textarea name="message" id="message" cols="30" rows="10" placeholder="Send me a message and I'll reply as soon as possible" onChange={onTextareaChange} ></textarea><p className='error_msg'>{errorMessage.message}</p>
+          <label className='label'>Message</label>
+          <textarea name="message" id="message" cols="30" rows="10" placeholder="Send me a message and I'll reply as soon as possible" onChange={onTextareaChange}  required></textarea><p className='error_msg'>{errorMessage.message}</p>
         </div>
 
         <div className="check">
-          <input type="checkbox" name="checkbox" id="check_box" required/><span>You agree to providing your data to Frank Udeorah who may contact you.</span>
+          <input type="checkbox" name="checkbox" id="check_box" required/><label>You agree to providing your data to Frank Udeorah who may contact you.</label>
         </div>
 
         <button id='btn__submit' type='submit'>Send message</button>
