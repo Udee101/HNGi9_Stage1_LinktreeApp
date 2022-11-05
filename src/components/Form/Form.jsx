@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import FormInput from './FormInput';
+
 
 const inputs = [
   {
@@ -31,6 +32,16 @@ const inputs = [
 ]
 
 const Form = () => {
+
+  const [values, setValues] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+  });
+  const [textarea, setTextarea] = useState({
+    message: "",
+  });
+  
   return (
     <>
       <form>
